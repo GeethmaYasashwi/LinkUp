@@ -17,7 +17,7 @@ io.on("connection",(socket)=>{
     socket.on("userconnect",(data)=>{
         console.log("userconnect",data.displayName,data.meetingid)
         var other_users=userConnections.filter(
-            (p)=>p.meeting_id==data.meetingid
+            (p) => p.meeting_id==data.meetingid
         );
         userConnections.push({
             connectionId:socket.id,
@@ -26,11 +26,18 @@ io.on("connection",(socket)=>{
 
         });
 
-        other_users.forEach((v=>{
+        other_users.forEach((v)=>{
             socket.to(v.connectionId).emit("inform_others_about_me",{
                 other_user_id:data.displayName,
                 connId:socket.id,
             })
-        }))
+        })
+        socket.emit("inform_me_about_other_users",other_users);
     });
+    socket.on("SDPProcess",(data)=>{
+        socket.to(data.to_connid).emit("SDPProcess",{
+            message:data.message,
+            from_connid:socket.id,
+        })
+    })
 });

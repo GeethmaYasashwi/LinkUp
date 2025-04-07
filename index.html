@@ -33,26 +33,79 @@
     <main class=" d-flex flex-column home-wrap">
         <div class="g-top text-light">
             <div class="top-remote-video-show-wrap d-flex">
-                <div id="meetingContainer" class="w-75" style="display:none" >
-                <div class="call-warp" style="background-color: black;">
-                    <div class="video-wrap" id="divUsers" style="display: flex; flex-wrap: wrap">
-                        <div id="me" class="userbox display-center flex-column">
-                            <h2 class="display-center" style="font-size: 14px;"></h2>
-                            <div class="display-center">
-                                <video autoplay muted id="localVideoPlayer"></video>
+               <div id="meetingContainer"  style="display:none;flex-basis: 75%;"  >
+                    <div class="call-warp" style="background-color: black;">
+                        <div class="video-wrap" id="divUsers" style="display: flex; flex-wrap: wrap">
+                            <div id="me" class="userbox display-center flex-column">
+                                <h2 class="display-center" style="font-size: 14px;"></h2>
+                                <div class="display-center">
+                                    <video autoplay muted id="localVideoPlayer"></video>
+                                </div>
                             </div>
-                        </div>
-                        <div id="otherTemplate" class="userbox display-center flex-column" style="display: none;">
-                            <h2 class="display-center" style="font-size: 14px;"></h2>
-                            <div class="display-center">
-                                <video autoplay muted ></video>
-                                <audio autoplay controls muted style="display: none;"></audio>
+                            <div id="otherTemplate" class="userbox display-center flex-column" style="display: none;">
+                                <h2 class="display-center" style="font-size: 14px;"></h2>
+                                <div class="display-center">
+                                    <video autoplay muted ></video>
+                                    <audio autoplay controls style="display: none;"></audio>
+                                </div>
+                                
                             </div>
-                            
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="g-right-details-wrap bg-light text-secondary h-100" style="flex-basis:25%; z-index: 1;">
+                    <div class="meeting-heading-wrap d-flex justify-content-between align-items-center pr-3 pl-3" style="height: 10vh;">
+                        <div class="meeting-heading font-weight-bold">Meeting Details</div>
+                        <div class="meeting-heading-cross display-center cursor-pointer">
+                            <span class="material-icons">clear</span>
+                        </div>
+                       
+                    </div>
+                    <div class="people-chat-wrap d-flex justify-content-between align-items-center ml-3 mr-3 pr-3 pl-3" style="height: 10vh;font-size: 14px;">
+                        <!-- Participants Section -->
+                        <div class="people-heading d-flex align-items-center cursor-pointer">
+                            <div class="people-heading-icon d-flex align-items-center mr-1">
+                                <span class="material-icons">people</span>
+                            </div>
+                            <div class="people-heading-text d-flex align-items-center">
+                                Participant (<span class="participant-count">1</span>)
+                            </div>
+                        </div>
+                
+                        <!-- Chat Section -->
+                        <div class="chat-heading d-flex align-items-center cursor-pointer">
+                            <div class="chat-heading-icon d-flex align-items-center mr-1">
+                                <span class="material-icons">message</span>
+                            </div>
+                            <div class="chat-heading-text">
+                                Chat
+                            </div>
+                        </div>
+                    </div>
+                    <div class="in-call-chat-wrap mr-3 ml-3 pl-3 pr-3" style="font-size: 14px; height: 69vh; overflow-y: scroll;">
+                        <div class="in-call-wrap-up" style="display: none !important"></div>
+                        <div class="chat-show-wrap text-secondary d-flex flex-column justify-content-between h-100">
+                            <div class="chat-message-show" id="messages"></div>
+                            <div class="chat-message-sent d-flex justify-content-between align-items-center" style="margin-bottom: 35px;">
+                                <!-- Input Field -->
+                                <div class="chat-message-sent-input" style="width: 85%;">
+                                    <input type="text" name="message" class="chat-message-sent-input-field w-100" 
+                                        id="msgbox" placeholder="Send a message to everyone" aria-label="Send a message to everyone" 
+                                        style="border-bottom:1px solid rgb(22, 123, 174); border:none;">
+                                </div>
+                            
+                                <!-- Send Button -->
+                                <div class="chat-message-sent-action d-flex align-items-center justify-content-center" 
+                                     id="btnsend" style="color: rgb(95, 164, 216); cursor: pointer;">
+                                    <span class="material-icons">send</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+
             </div>
             <div class="g-top-left bg-light text-secondary w-25 d-flex align-items-center justify-content-center pl-2 pr-2">
                 <div class="top-left-participant-wrap pt-2 cursor-pointer" >
@@ -66,7 +119,7 @@
                 </div>
                 <div class="top-left-time-wrap"></div>
             </div>
-        </div>
+        </div> 
         <div class="g-bottom bg-light m-0 d-flex justify-content-between align-items-center">
             <div class="bottom-left d-flex" style="height: 10vh;">
                 <div class="display-center cursor-pointer meeting-details-button">
@@ -75,20 +128,20 @@
             </div>
             <div class="bottom-middle d-flex justify-content-center align-items-center" style="height: 10vh;">
                 <div class="mic-toggle-wrap action-icon-style display-center mr-2 cursor-pointer" id="micMuteUnmute">
-                    <span class="material-icons">mic_off</span>
+                    <span class="material-icons" style="width: 100%;">mic_off</span>
                 </div>
                 <div class="end-call-wrap action-icon-style display-center mr-2 cursor-pointer">
                     <span class="material-icons text-danger">call</span>
                 </div>
                 <div class="video-toggle-wrap action-icon-style display-center cursor-pointer" id="videoCamOnOff">
-                    <span class="material-icons">videocam_off</span>
+                    <span class="material-icons" style="width:100%;">videocam_off</span>
                 </div>
             </div>
 
             <div class="bottom-right d-flex justify-content-center align-items-center mr-3" style="height: 10vh;">
                 <div class="present-now-wrap d-flex justify-content-center flex-column align-items-center cursor-pointer" id ="ScreenShareOnOff">
                     <span class="material-icons">present_to_all</span>
-                    <div>Present Now</div>
+                    <div>Screen Share</div>
                 </div>
                 
                 <div class="option-wrap cursor-pointer display-center " style="height: 10vh; position: relative;">

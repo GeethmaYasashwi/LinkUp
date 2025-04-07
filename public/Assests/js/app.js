@@ -359,12 +359,14 @@ var MyApp = (function(){
         $("#me h2").text(user_id+"(Me)");
         document.title=user_id;
         event_process_for_signaling_server();
+        eventHandeling();
         
     }
     
 
     function event_process_for_signaling_server(){
-        socket = io.connect()
+        socket = io.connect();
+
         var SDP_function = function(data,to_connid)
         {
             socket.emit("SDPProcess",{
@@ -408,10 +410,53 @@ var MyApp = (function(){
         
         socket.on("SDPProcess",async function(data){
             await AppProcess.processClientFunc(data.message,data.from_connid);
-        })
+        });
+        
+        socket.on("showChatMessage", function (data) {
+            var time = new Date();
+            var lTime = time.toLocaleString("en-US", {
+                hour: "numeric",
+                minute: "numeric",
+                hour12: true,
+            });
+            var div = $("<div>").html(
+                "<span class='font-weight-bold mr-3' style='color:black'>" +
+                data.from +
+                "</span> " +
+                lTime +
+                "</br>" +
+                data.message
+            );
+            $("#messages").append(div);
+        });
 
 
     }
+
+    function eventHandeling(){
+        $("#btnsend").on("click",function(){
+            var msgData = $("#msgbox").val();
+            socket.emit("sendMessage",msgData);
+            var time = new Date();
+            var lTime = time.toLocaleString("en-US", {
+                hour: "numeric",
+                minute: "numeric",
+                hour12: true,
+            });
+            var div = $("<div>").html(
+                "<span class='font-weight-bold mr-3' style='color:black'>" +
+                user_id +
+                "</span> " +
+                lTime +
+                "</br>" +
+                msgData
+            );
+            $("#messages").append(div);
+            $("#msgbox").val("");
+        })
+    }
+
+   
 
     function addUser(other_user_id,connId){
 

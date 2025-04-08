@@ -157,3 +157,18 @@ video{
     border-radius:5px;
 
 }
+.top-box{
+    background-color: rgb(14 6 6);
+    position:fixed;
+    width: 30%;
+    height: 30%;
+    top:20.5%;
+    left: 35.5%;
+    display: black;
+    box-shadow: 0 0 5px black;
+    border-radius: 10px;
+    z-index: 999;
+    columns: white;
+    border: 2px solid white;
+
+}

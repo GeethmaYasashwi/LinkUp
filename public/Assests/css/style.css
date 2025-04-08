@@ -152,3 +152,8 @@ video{
     width: 300px
 }
 
+.active{
+    background-color:#98b6ca ;
+    border-radius:5px;
+
+}

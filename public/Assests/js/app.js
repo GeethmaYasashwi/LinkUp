@@ -399,6 +399,19 @@ var MyApp = (function(){
             AppProcess.setNewConnection(data.connId); //to build webrtc connection with other users
 
         });
+
+        socket.on("showFileMessage",function(data){
+            var time = new Date();
+            var lTime = time.toLocaleString("en-Us",{
+                hour:"numeric",
+                minute:"numeric",
+                hour12:true
+            })
+
+            var attachFileAreaForOther = documet.querySelector(".show-attach-file");
+            attachFileAreaForOther.innerHTML+="<div class='left-align' style='display:flex; align-items:center;'><img src='public/Assests/image/gojo.jpg' style='height:40px;width:40px' class ='caller-image circle'><div style='font-weight:600;margin:0 5px'>"+data.username+"</div>:<div><a style='color:#007bff' href='"+data.filePath+"' download>"+data.fileName+"</a></div></div><br/>";
+        })
+
         socket.on("inform_me_about_other_users",function(other_users){
             var userNumber =other_users.length;
             var userNumb= userNumber+1;
@@ -600,11 +613,26 @@ var MyApp = (function(){
             },
             error: function(){
                 console.log('error');
-            }
+            },
 
+        });
+
+        var attachFileArea=document.querySelector(".show-attach-file")
+        var attachFileName=$("#customFile").val().split("\\").pop();
+        var attachFilePath="public/attachment/"+meeting_id+"/"+attachFileName;
+        attachFileArea.innerHTML+="<div class='left-align' style='display:flex; align-items:center;'><img src='public/Assests/image/gojo.jpg' style='height:40px;width:40px' class ='caller-image circle'><div style='font-weight:600;margin:0 5px'>"+user_id+"</div>:<div><a style='color:#007bff' href='"+attachFilePath+"' download>"+attachFileName+"</a></div></div><br/>";
+        $("label.custom-file-label").text("");
+        //to let others know
+        socket.emit("fileTransferToOther",{
+            username: user_id,
+            meetingid: meeting_id,
+            filePath: attachFilePath,
+            fileName: attachFileName,
         })
-    })
-    
+            
+        
+
+    });
     
     return{
         _init:function(uid,mid){

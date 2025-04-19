@@ -57,10 +57,30 @@ io.on("connection",(socket)=>{
                 socket.to(v.connectionId).emit("showChatMessage",{
                     from:from,
                     message:msg,
-                })
-            })
+                });
+            });
         }
-    })
+    });
+
+    //file transfer
+    socket.on("fileTransferToOther",(msg)=>{
+        console.log(msg);
+        var mUser = userConnections.find((p)=>p.connectionId==socket.id);
+        if(mUser){
+            var meetingid = mUser.meeting_id;
+            var from = mUser.user_id;
+            var list = userConnections.filter((p)=>p.meeting_id == meetingid);
+            list.forEach((v)=>{
+                socket.to(v.connectionId).emit("showFileMessage",{
+                    username:msg.user_id,
+                    meetingid:msg.meeting_id,
+                    filePath:msg.attachFilePath,
+                    fileName:msg.attachFileName,
+                });
+            });
+        }
+    });
+    
 
     //Dosconnect user
     socket.on("disconnect",function(){

@@ -458,7 +458,14 @@ var MyApp = (function(){
             );
             $("#messages").append(div);
             $("#msgbox").val("");
-        })
+        });
+        var url = window.location.href;
+        $(".meeting_url").text(url);
+
+        $("#divUsers").on("dblclick","video",function(){
+            this.requestFullscreen();
+        });
+
     }
 
    
@@ -487,18 +494,22 @@ var MyApp = (function(){
         $(".chat-show-wrap").show(300);
         $(".in-call-wrap-up").hide(300);
         $(this).addClass("active");
-        $(".people-heading").removeClass("active")
+        $(".people-heading").removeClass("active");
     } );
     $(document).on("click",".meeting-heading-cross",function(){
         $(".g-right-details-wrap").hide(300);
     } );
     $(document).on("click",".top-left-participant-wrap",function(){
+        $(".people-heading").addClass("active");
+        $(".chat-heading").removeClass("active");
         $(".g-right-details-wrap").show(300);
         $(".in-call-wrap-up").show(300);
         $(".chat-show-wrap").hide(300);
 
     } );
     $(document).on("click",".top-left-chat-wrap",function(){
+        $(".people-heading").removeClass("active");
+        $(".chat-heading").addClass("active")
         $(".g-right-details-wrap").show(300);
         $(".in-call-wrap-up").hide(300);
         $(".chat-show-wrap").show(300);
@@ -511,7 +522,7 @@ var MyApp = (function(){
 
     } );
     $(document).mouseup(function(e) {
-        var container = [];
+        var container = new Array();
         container.push($(".top-box-show"));
     
         $.each(container, function(key, value) {
@@ -520,10 +531,49 @@ var MyApp = (function(){
             }
         });
     });
+    $(document).mouseup(function(e) {
+        var container = new Array();
+        container.push($(".g-details"));
+        container.push($(".g-right-details-wrap"));
+        $.each(container, function(key, value) {
+            if (!$(value).is(e.target) && $(value).has(e.target).length === 0) {
+                $(value).hide(300); 
+            }
+        });
+    });
+    
     
     $(document).on("click", ".call-cancel-action", function() {
         $(".top-box-show").html(""); 
     });
+
+    
+    $(document).on("click",".copy_info",function(){
+        var $temp =$("<input>");
+        $("body").append("$temp");
+        $temp.val($(".meeting_url").text()).select();
+        document.execCommand("copy");
+        $(".link-conf").show();
+        setTimeout(function(){
+            $(".link-conf").hide();
+        },3000);
+    });
+    $(document).on("click",".meeting-details-button",function(){
+        $(".g-details").slideDown(300);
+    }) ;
+    $(document).on("click",".g-details-heading-attachment",function(){
+        $(".g-details-heading-show").hide();
+        $(".g-details-heading-show-attachment").show();
+        $(this).addClass('active');
+        $(".g-details-heading-details").removeClass('active');
+    }) ;
+    $(document).on("click",".g-details-heading-details",function(){
+        $(".g-details-heading-show").show();
+        $(".g-details-heading-show-attachment").hide();
+        $(this).addClass('active');
+        $(".g-details-heading-attachment").removeClass('active');
+    }) ;
+    
     
     return{
         _init:function(uid,mid){

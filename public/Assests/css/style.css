@@ -195,3 +195,10 @@ video{
     font-family: 14px;
     padding-left: 10px;
  }
+
+ .recording-show{
+    
+    position: absolute;
+    margin-bottom: 132px;
+    display:none;
+ }

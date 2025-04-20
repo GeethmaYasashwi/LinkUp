@@ -56,9 +56,24 @@ Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
 - Start a video call with real-time audio, video, and text chat features.
 
 ## Functionalities
+🎥 Video Call Recording
+Record peer-to-peer or group video calls for later playback or download.
 
-- Screen sharing functionality.
-- Group video conferencing.
-- Recording feature for video calls.
+💬 Real-Time Text Messaging
+Chat instantly during calls with built-in messaging functionality.
+
+🎛️ Media Controls
+Toggle audio and video streams (mute/unmute mic, turn camera on/off) during the call.
+
+🖥️ Screen Sharing
+Share your screen with other participants — great for presentations or support.
+
+👥 Group Video Conferencing
+Host or join video calls with multiple participants seamlessly.
+
+
+
+
+
 
 

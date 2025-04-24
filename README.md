@@ -70,3 +70,11 @@ Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
 👥 Group Video Conferencing – Connect multiple users in a single video call with seamless switching and layout.
 
 📁 File Sharing – Transfer files securely between participants during a call.
+
+
+
+## Future Improvements
+
+🚀 Deploy the application to the internet so it's accessible to the public
+
+🎨 Improve the UI for a more user-friendly and modern experience

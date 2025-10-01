@@ -3,6 +3,11 @@
 
 **LinkUp** is a functional real-time video conferencing application that utilizes **WebRTC** technology, enabling seamless **peer-to-peer communication** with features such as video, audio, and text chat.  
 
+![Express](https://img.shields.io/badge/Express-000000?style=flat&logo=express&logoColor=white)
+![JSON](https://img.shields.io/badge/JSON-000000?style=flat&logo=json&logoColor=white)
+![Markdown](https://img.shields.io/badge/Markdown-000000?style=flat&logo=markdown&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white)
 ---
 
 ## 📖 About  
@@ -65,22 +70,6 @@ Go to `http://localhost:3000` in your browser.
 * User authentication & meeting scheduling
 * Screen sharing support
 * Recording & playback of meetings
-
----
-
-## 📂 Project Structure
-
-
-├── node_modules/        # Installed dependencies
-├── public/              # Static assets and frontend files
-├── .gitignore           # Git ignore rules
-├── README.md            # Project documentation
-├── action.html          # Additional HTML page (e.g., actions/controls)
-├── index.html           # Main application UI (includes recording button)
-├── package-lock.json    # Dependency lock file
-├── package.json         # Project dependencies & scripts
-├── server.js            # Backend server (Node.js/Express + Socket.io)
-└── vercel.json          # Deployment configuration for Vercel
 
 
 ---

@@ -40,22 +40,21 @@ LinkUp allows users to create or join meeting rooms directly in the browser. Wit
 ## 🚀 Getting Started  
 
 ### 1. Clone the repository  
-
-git clone https://github.com/your-username/linkup.git
-cd linkup
-
-
+```bash
+  git clone https://github.com/your-username/linkup.git
+  cd linkup
+```
 ### 2. Install dependencies
 
-
+```bash
 npm install
-
+```
 
 ### 3. Start the server
 
-
+```
 npm start
-
+```
 
 ### 4. Open the app
 
